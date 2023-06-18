@@ -1,23 +1,26 @@
 "use client";
 import React, { useState } from "react";
 import "../../styles/login.css";
-import { loginUser } from "../../helpers/auth";
 
-const Login = () => {
+const Register = () => {
+  const [userName, setUserName] = useState<string>("");
   const [email, setEmail] = useState<string>("");
   const [password, setPassword] = useState<string>("");
-
-  const handleLogin = async (e) => {
-    e.preventDefault();
-    let res = loginUser(email, password);
-    console.log(res);
-  };
 
   return (
     <div className="login-container">
       <div className="card-container">
-        <h3>Login</h3>
-        <form onSubmit={handleLogin}>
+        <h3>Register</h3>
+        <form>
+          <div style={{ marginTop: 10 }}>
+            <label htmlFor="username">User Name</label>
+            <br />
+            <input
+              value={userName}
+              onChange={e => setUserName(e.target.value)}
+              type="text"
+            />
+          </div>
           <div style={{ marginTop: 10 }}>
             <label htmlFor="email">Email</label>
             <br />
@@ -40,7 +43,7 @@ const Login = () => {
             <button
               style={{ backgroundColor: "white", borderRadius: 4, padding: 5 }}
               type="submit">
-              Log in
+              Register
             </button>
           </div>
         </form>
@@ -49,4 +52,4 @@ const Login = () => {
   );
 };
 
-export default Login;
+export default Register;

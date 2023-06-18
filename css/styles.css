@@ -1,0 +1,95 @@
+:root {
+    --color: black
+}
+
+
+/* note : 
+    * invalidate at compute value time : IACVT
+    */
+
+
+/* add global variable , but brouser doesn't allow to use it */
+/* @property --color {
+    syntax: "<color>";
+    inherits: trur;
+    initial-value: black;
+} */
+
+/* chapter three  */
+
+button {
+
+    /* add private variable of color with fallback  */
+    --_color: var(--color, black);
+    border: .1em solid var(--_color);
+    background: transparent;
+    color: var(--_color);
+    transition: 1s;
+}
+
+button:hover {
+    background: var(--_color);
+    box-sizing: 0 0 0 2em var(--_color) inset;
+    color: white;
+}
+
+button.pink {
+    border-color: #f06;
+    color: #f06;
+}
+
+button.pink:hover {
+    background: #f06;
+    color: white;
+}
+
+
+
+/* chapter four  */
+
+body {
+    --gutter: .3em;
+    display: grid;
+    gap: var(--gutter);
+    font-size: 90%;
+    font-size: calc(90% * var(--font-size-scale, 1));
+    grid-template-columns: repeat(var(--columns), 1fr);
+}
+
+section {
+    background: silver;
+    padding: 1.2em;
+}
+
+section:nth-of-type(3n + 4) {
+    background-color: #f06;
+    color: hsl(0 0% 100% /.6);
+    grid-column-end: span var(--columns);
+
+}
+
+section:nth-last-of-type(2) {
+    background-color: orange;
+    grid-column-end: span calc(var(--columns) - 1);
+}
+
+@media (min-width: 600px) {
+    body {
+        --gutter: .5em;
+        --font-size-scale: 1.2;
+        --columns: 3;
+    }
+
+    section {
+        padding: 1.6em;
+    }
+
+}
+
+/* new type of the variable in media query */
+/* @media all and (max-width: 450px) {
+    .grid {
+       --columns: 200px;   
+    }
+}
+ */
