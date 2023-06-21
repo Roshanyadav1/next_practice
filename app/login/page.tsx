@@ -7,7 +7,7 @@ const Login = () => {
   const [email, setEmail] = useState<string>("");
   const [password, setPassword] = useState<string>("");
 
-  const handleLogin = async (e) => {
+  const handleLogin = async (e : React.SyntheticEvent) => {
     e.preventDefault();
     let res = loginUser(email, password);
     console.log(res);
